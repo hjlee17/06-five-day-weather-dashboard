@@ -1,0 +1,117 @@
+:root {
+    --blue: rgb(54, 80, 113);
+    --blue5: rgb(54, 80, 113, 0.5);
+    --purple: rgba(109, 90, 122);
+    --mauve: rgba(182, 101, 118);
+    --coral: rgba(229, 107, 110);
+    --apricot: rgba(235, 172, 139);
+    /* a fourth number refers to opacity */
+  }
+
+  /* reset some default styles */
+html, body, header, footer, .container, .left-column, .right-column, .content-container {
+    margin: 0;
+    padding: 0;
+}
+
+
+header, footer {
+    background-color: var(--blue);
+    color: #fff;
+    padding: 10px;
+    font-size: 3em;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+
+.left-column {
+    flex: 1;
+    flex-direction: row;
+    background-color: var(--purple);
+    padding: 20px;
+    box-sizing: border-box; /* include padding in width calculation */
+}
+
+.left-column p {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#city-input {
+    border: none;
+    border-radius: 7.5px;
+    padding: 10px;
+    width: 100%; 
+    margin-bottom: 10px;
+}
+
+.left-column button {
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 7.5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%; 
+}
+
+.right-column {
+    flex: 3;
+    flex-direction: row;
+    background-color: var(--apricot);
+    padding: 20px;
+    box-sizing: border-box; /* include padding in width calculation */
+}
+
+
+#current-city-today {
+    background-color: var(--coral);
+    border: 3px solid transparent;
+    border-radius: 7.5px;
+    margin-bottom: 20px;
+}
+
+#current-city-today p {
+    margin: 10px;
+    font-size: 2.5em;
+}
+
+#current-city-today div {
+    margin: 0px 10px 10px 10px;
+}
+
+#five-day-forecast {
+    background-color: var(--mauve);
+    border: 3px solid transparent;
+    border-radius: 7.5px;
+}
+
+#five-day-forecast p {
+    margin: 10px;
+    font-size: 2em;
+}
+
+.columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column:not(:first-child) { /* add space between cols but not at outermost edges */
+    margin-left: 15px; 
+}
+
+.column {
+    flex: 1;
+    background-color: rgba(229,229,229,0.5);
+    border-radius: 7.5px;
+    padding: 10px;
+    margin-bottom: 10px;
+
+}
