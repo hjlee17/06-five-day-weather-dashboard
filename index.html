@@ -24,27 +24,63 @@
       <div class="left-column">
         <p>Search for a City</p>
         <input type="text" id="city-input" placeholder="city" required>
-        <button>Search</button>
+        <button id="search-btn">Search</button>
+        <div id="previous-cities"></div>
       </div>
 
     
       <div class="right-column">
 
         <div class="content-container" id="current-city-today">
-          <p>populate with "city, today's date"</p>
-          <div id="current-temp">populate with temp</div>
-          <div id="current-wind">populate with wind</div>
-          <div id="current-humidity">populate with humidity</div>
+          <p id="search-city-current-date"></p>
+          <img id="wicon" src="" style="display: none" alt="weather icon">
+          <div id="current-temp"></div>
+          <div id="current-wind"></div>
+          <div id="current-humidity"></div>
         </div>
 
         <div class="content-container" id="five-day-forecast">
           <p>5-Day Forecast:</p>
             <div class="columns">
-              <div class="column">Column 1</div>
-              <div class="column">Column 2</div>
-              <div class="column">Column 3</div>
-              <div class="column">Column 4</div>
-              <div class="column">Column 5</div>
+              <div class="column">
+                <div id="day-1-date"></div>
+                <div id="day-1-icon"></div>
+                <div id="day-1-temp"></div>
+                <div id="day-1-wind"></div>
+                <div id="day-1-humidity"></div>
+              </div>
+
+              <div class="column">
+                <div id="day-2-date"></div>
+                <div id="day-2-icon"></div>
+                <div id="day-2-temp"></div>
+                <div id="day-2-wind"></div>
+                <div id="day-2-humidity"></div>
+              </div>
+              
+              <div class="column">
+                <div id="day-3-date"></div>
+                <div id="day-3-icon"></div>
+                <div id="day-3-temp"></div>
+                <div id="day-3-wind"></div>
+                <div id="day-3-humidity"></div>
+              </div>
+
+              <div class="column">
+                <div id="day-4-date"></div>
+                <div id="day-4-icon"></div>
+                <div id="day-4-temp"></div>
+                <div id="day-4-wind"></div>
+                <div id="day-4-humidity"></div>
+              </div>
+              
+              <div class="column">
+                <div id="day-5-date"></div>
+                <div id="day-5-icon"></div>
+                <div id="day-5-temp"></div>
+                <div id="day-5-wind"></div>
+                <div id="day-5-humidity"></div>
+              </div>
             </div>
         </div>
 
@@ -56,6 +92,11 @@
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous">
+    </script>
     <script src="./assets/js/script.js"></script>
   </body>
 

@@ -62,6 +62,14 @@ header, footer {
     width: 100%; 
 }
 
+/* #previous-cities {
+    display: flex;
+    flex-direction: column-reverse;
+} */
+.previous-city-button {
+    margin-top: 10px;
+  }
+
 .right-column {
     flex: 3;
     flex-direction: row;
@@ -113,5 +121,13 @@ header, footer {
     border-radius: 7.5px;
     padding: 10px;
     margin-bottom: 10px;
+}
 
+.column div:first-child {
+    font-size: 1.5em;
+    margin-bottom: .5em;
+}
+
+.column div:not(:first-child) {
+    margin-bottom: .25em;
 }
