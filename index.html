@@ -13,8 +13,6 @@
   </head>
 
 
-
-
   <body>
 
     <header>Weather Dashboard</header>
@@ -25,6 +23,7 @@
         <p>Search for a City</p>
         <input type="text" id="city-input" placeholder="city" required>
         <button id="search-btn">Search</button>
+        <hr>
         <div id="previous-cities"></div>
       </div>
 
@@ -34,6 +33,7 @@
         <div class="content-container" id="current-city-today">
           <p id="search-city-current-date"></p>
           <img id="wicon" src="" style="display: none" alt="weather icon">
+          <div id="wicon-description"></div>
           <div id="current-temp"></div>
           <div id="current-wind"></div>
           <div id="current-humidity"></div>
@@ -44,7 +44,12 @@
             <div class="columns">
               <div class="column">
                 <div id="day-1-date"></div>
-                <div id="day-1-icon"></div>
+                <div class="weather-icon-details">
+                  <div id="day-1-wicon-description"></div>
+                  <img id="day-1-wicon" src="" style="display: none" alt="weather icon">
+                  <div class="wicon-timestamp" id="day-1-wicon-timestamp"></div>
+                </div>
+                <div class="five-day-col-text">Measurements below are averages for the day.</div>
                 <div id="day-1-temp"></div>
                 <div id="day-1-wind"></div>
                 <div id="day-1-humidity"></div>
@@ -52,15 +57,25 @@
 
               <div class="column">
                 <div id="day-2-date"></div>
-                <div id="day-2-icon"></div>
+                <div class="weather-icon-details">
+                  <div id="day-2-wicon-description"></div>
+                  <img id="day-2-wicon" src="" style="display: none" alt="weather icon">
+                  <div class="wicon-timestamp" id="day-2-wicon-timestamp"></div>
+                </div>
+                <div class="five-day-col-text">Measurements below are averages for the day.</div>
                 <div id="day-2-temp"></div>
                 <div id="day-2-wind"></div>
                 <div id="day-2-humidity"></div>
               </div>
               
-              <div class="column">
+              <div class="column">  
                 <div id="day-3-date"></div>
-                <div id="day-3-icon"></div>
+                <div class="weather-icon-details">
+                  <div id="day-3-wicon-description"></div>
+                  <img id="day-3-wicon" src="" style="display: none" alt="weather icon">
+                  <div class="wicon-timestamp" id="day-3-wicon-timestamp"></div>
+                </div>
+                <div class="five-day-col-text">Measurements below are averages for the day.</div>
                 <div id="day-3-temp"></div>
                 <div id="day-3-wind"></div>
                 <div id="day-3-humidity"></div>
@@ -68,7 +83,12 @@
 
               <div class="column">
                 <div id="day-4-date"></div>
-                <div id="day-4-icon"></div>
+                <div class="weather-icon-details">
+                  <div id="day-4-wicon-description"></div>
+                  <img id="day-4-wicon" src="" style="display: none" alt="weather icon">
+                  <div class="wicon-timestamp" id="day-4-wicon-timestamp"></div>
+                </div>
+                <div class="five-day-col-text">Measurements below are averages for the day.</div>
                 <div id="day-4-temp"></div>
                 <div id="day-4-wind"></div>
                 <div id="day-4-humidity"></div>
@@ -76,7 +96,12 @@
               
               <div class="column">
                 <div id="day-5-date"></div>
-                <div id="day-5-icon"></div>
+                <div class="weather-icon-details">
+                  <div id="day-5-wicon-description"></div>
+                  <img id="day-5-wicon" src="" style="display: none" alt="weather icon">
+                  <div class="wicon-timestamp" id="day-5-wicon-timestamp"></div>
+                </div>
+                <div class="five-day-col-text">Measurements below are averages for the day.</div>
                 <div id="day-5-temp"></div>
                 <div id="day-5-wind"></div>
                 <div id="day-5-humidity"></div>
@@ -88,7 +113,7 @@
 
     </div>
 
-    <footer>footer</footer>
+    <footer>💜 happy planning, and safe travels! 💜</footer>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

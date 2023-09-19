@@ -16,8 +16,6 @@ const key = "2eb84bd9c91396232bf772ae41827d70";
 // function storeCities
 
 
-// can i combine the two event handlers at the end?
-
 
 $(document).ready(function() {
     // function to change user inputs to title case and remove multiple spaces
@@ -130,20 +128,30 @@ $(document).ready(function() {
                     console.log("fiveDayForecast API data")
                     console.log(fiveDayForecast)
 
+
+                    // populate current weather desc and icon
+                    var currentWeatherMain = currentWeather.weather[0].main;
+                    var currentWeatherDesc = currentWeather.weather[0].description;
+                    var currentIconCode = currentWeather.weather[0].icon;
+                    console.log (`${currentWeatherMain}, ${currentWeatherDesc}, ${currentIconCode}`);
+                    var currentWeatherDescEl = document.getElementById('wicon-description');
+                    currentWeatherDescEl.textContent = (`${currentWeatherMain}: ${currentWeatherDesc}`);
+                    var iconURL = `https://openweathermap.org/img/w/${currentIconCode}.png`;
+                    var currentIconIMG = document.getElementById('wicon');
+                    currentIconIMG.style.display = 'block';
+                    currentIconIMG.src = iconURL; 
+
+
                     // populate search city name and current date
                     var currentDate = dayjs().format("M/DD/YYYY");
                     var cityNameFromAPI = currentWeather.name;
                     var searchCityCurrentDate = `${cityNameFromAPI} (${currentDate})`;
                     var searchCityCurrentDateEl = document.getElementById('search-city-current-date');
-                    searchCityCurrentDateEl.textContent = searchCityCurrentDate;
-
-                    // populate current weather icon
-                    var currentIconCode = currentWeather.weather[0].icon;
-                    console.log (currentIconCode);
-                    var iconURL = "https://openweathermap.org/img/w/" + currentIconCode + ".png";
-                    var currentIconIMG = document.getElementById('wicon');
-                    currentIconIMG.style.display = 'block';
-                    currentIconIMG.src = iconURL; 
+                    searchCityCurrentDateEl.textContent = (`${searchCityCurrentDate} `);
+                    searchCityCurrentDateEl.style.display = 'inline';
+                    currentIconIMG.style.display = 'inline';
+                    searchCityCurrentDateEl.appendChild(currentIconIMG);
+                    
                         
                     // populate current temp
                     var currentTemp = currentWeather.main.temp;
@@ -169,11 +177,19 @@ $(document).ready(function() {
                     var tempsList = {};
                     var windSpeedList = {};
                     var humidityList = {};
+                    var iconsList = {};
+                    var weatherMainsList = {};
+                    var weatherDescriptionsList = {};
+                    var iconTimestampsList = {};
 
                     // declare empty objects to store avg value for each date
                     var dailyTempAverages = {};
                     var dailyWindSpeedAverages = {};
                     var dailyHumidityAverages = {};
+                    var dailyFirstIcon = {};
+                    var dailyFirstWeatherMain = {};
+                    var dailyFirstWeatherDescription = {};
+                    var dailyFirstIconTimestamp = {};
 
                     // loop through all forty entries in API data to find date and value
                     fiveDayForecast.list.forEach(entry => {
@@ -186,8 +202,7 @@ $(document).ready(function() {
                         } else { // if date doesn't exist yet, create new array with that date
                             tempsList[date] = [temp];
                         }
-                        console.log("temp:")
-                        console.log (temp)
+                        console.log(`temp: ${temp}`)
 
                         var windSpeed = entry.wind.speed;
                         if (windSpeedList[date]) {
@@ -195,8 +210,7 @@ $(document).ready(function() {
                         } else {
                             windSpeedList[date] = [windSpeed];
                         }
-                        console.log("windSpeed:")
-                        console.log (windSpeed)
+                        console.log(`windSpeed: ${windSpeed}`)
 
                         var humidity = entry.main.humidity;
                         if (humidityList[date]) {
@@ -204,8 +218,39 @@ $(document).ready(function() {
                         } else {
                             humidityList[date] = [humidity];
                         }
-                        console.log("humidity:")
-                        console.log (humidity)
+                        console.log(`humidity: ${humidity}`)
+                        
+                        // create array of icons by date
+                        var icon = [`${entry.weather[0].icon}`];
+                        if (iconsList[date]) {
+                            iconsList[date].push(icon);
+                        } else {
+                            iconsList[date] = [icon];
+                        }
+
+                        // create array of MAIN weather descriptions
+                        var weatherMain = [`${entry.weather[0].main}`];
+                        if (weatherMainsList[date]) {
+                            weatherMainsList[date].push(weatherMain);
+                        } else {
+                            weatherMainsList[date] = [weatherMain];
+                        }
+
+                        // create array of weather descriptions
+                        var weatherDesc = [`${entry.weather[0].description}`];
+                        if (weatherDescriptionsList[date]) {
+                            weatherDescriptionsList[date].push(weatherDesc);
+                        } else {
+                            weatherDescriptionsList[date] = [weatherDesc];
+                        }
+
+                        // create array of timestamps corresponding with first weather icons 
+                        var iconTimestamp = [`${entry.dt}`];
+                        if (iconTimestampsList[date]) {
+                            iconTimestampsList[date].push(iconTimestamp);
+                        } else {
+                            iconTimestampsList[date] = [iconTimestamp];
+                        }
 
 
                         // now calculate the avg in each array
@@ -218,13 +263,36 @@ $(document).ready(function() {
                         }    
 
                         for (var date in humidityList) {
-                        dailyHumidityAverages[date] = calculateAverage(humidityList[date]);
+                            dailyHumidityAverages[date] = calculateAverage(humidityList[date]);
+                        }
+
+                        // grab the first icon per date in array
+                        for (var date in iconsList) {
+                            dailyFirstIcon[date] = iconsList[date][0];
+                        }
+
+                        // grab the first weather MAIN description per date in array
+                        for (var date in weatherMainsList) {
+                            dailyFirstWeatherMain[date] = weatherMainsList[date][0];
+                        }
+
+                        // grab the first weather description per date in array
+                        for (var date in weatherDescriptionsList) {
+                            dailyFirstWeatherDescription[date] = weatherDescriptionsList[date][0];
+                        }
+
+                        // grab the datestamp corresponding with the first icon per date in array
+                        for (var date in iconTimestampsList) {
+                            dailyFirstIconTimestamp[date] = iconTimestampsList[date][0];
                         }
                 
                     })
                     console.log(dailyTempAverages);
                     console.log(dailyWindSpeedAverages);
                     console.log(dailyHumidityAverages);
+                    console.log(dailyFirstIcon);
+                    console.log(`${dailyFirstWeatherMain}: ${dailyFirstWeatherDescription}`)
+                    console.log(dailyFirstIconTimestamp);
 
                     var currentDate = dayjs().format('M/DD/YYYY');
 
@@ -248,18 +316,38 @@ $(document).ready(function() {
                     var temp = dailyTempAverages[fiveDayForecastDates[startIndex + i]];
                     var wind = dailyWindSpeedAverages[fiveDayForecastDates[startIndex + i]];
                     var humidity = dailyHumidityAverages[fiveDayForecastDates[startIndex + i]];
+                    var icon =  dailyFirstIcon[fiveDayForecastDates[startIndex + i]];
+                    var weatherMain = dailyFirstWeatherMain[fiveDayForecastDates[startIndex + i]];
+                    var weatherDesc = dailyFirstWeatherDescription[fiveDayForecastDates[startIndex + i]];
+                    var iconTimestamp = dailyFirstIconTimestamp[fiveDayForecastDates[startIndex + i]];
+                    
 
                     var dateEl = document.getElementById(`${elementIDs[i]}-date`);
                     dateEl.textContent = date;
 
+                    // populate five-day weather description
+                    var weatherDescEl = document.getElementById(`${elementIDs[i]}-wicon-description`);
+                    weatherDescEl.textContent = (`${weatherMain}: ${weatherDesc}`);
+
+                    // populate five-day weather icon
+                    var fiveDayIconEl = document.getElementById(`${elementIDs[i]}-wicon`);
+                    var fiveDayIconURL = `https://openweathermap.org/img/w/${icon}.png`;
+                    fiveDayIconEl.style.display = 'block';
+                    fiveDayIconEl.src = fiveDayIconURL; 
+
+                    // populate five-day weather icon/desc timestamp
+                    var iconTimestampEl = document.getElementById(`${elementIDs[i]}-wicon-timestamp`);
+                    iconTimestampEl.textContent = `(at ${dayjs.unix(iconTimestamp).format('H:mm a')})`;
+                
+
                     var tempEl = document.getElementById(`${elementIDs[i]}-temp`);
-                    tempEl.textContent = `Avg Temp: ${temp} °F`;
+                    tempEl.textContent = `Temp: ${temp} °F`;
 
                     var windEl = document.getElementById(`${elementIDs[i]}-wind`);
-                    windEl.textContent = `Avg Wind: ${wind} mph`;
+                    windEl.textContent = `Wind Speed: ${wind} mph`;
 
                     var humidityEl = document.getElementById(`${elementIDs[i]}-humidity`);
-                    humidityEl.textContent = `Avg Humidity: ${humidity}%`;
+                    humidityEl.textContent = `Humidity: ${humidity}%`;
 
                     console.log("dates of 5 day forecast data: " + fiveDayForecastDates)
                     
@@ -321,11 +409,10 @@ $(document).ready(function() {
     };
 
 
-
-    // event handler for the search button
-    $('#search-btn').click(function() {
+    // function search city
+    function searchCity() {
         var cityName = $('#city-input').val();
-        var properCityName = titleCaseAndMinimalSpaces(cityName)
+        var properCityName = titleCaseAndMinimalSpaces(cityName);
 
         // stop executing if code is blank
         if (properCityName === "") {
@@ -336,36 +423,26 @@ $(document).ready(function() {
         fetchAndDisplayWeather(properCityName);
         savedCities.unshift(properCityName); // add to index[0] so button appears at the top
         savedCities = removeDuplicates(savedCities);
-        cityInput.value = "";
+        cityInput.val("");
         console.log("saved cities array:")
         console.log(savedCities)
         storeCities();
         renderSavedCities();
+    }
+
+    // event handler for the search button
+    $('#search-btn').click(function() {
+        searchCity();
     });
 
 
     // event handler for enter key on the input field
     $('#city-input').on('keyup', function(event) {
         if (event.key === 'Enter') {
-            var cityName = $('#city-input').val();
-            var properCityName = titleCaseAndMinimalSpaces(cityName)
-
-            // stop executing if code is blank
-            if (properCityName === "") {
-                alert("Enter a city, input field is blank.");
-                return; 
-            }    
-
-            fetchAndDisplayWeather(properCityName);
-            savedCities.unshift(properCityName); // add to index[0] so button appears at the top
-            savedCities = removeDuplicates(savedCities);
-            cityInput.value = "";
-            console.log("saved cities array:")
-            console.log(savedCities)
-            storeCities();
-            renderSavedCities();
+            searchCity();
         }
     });
+
 
 
     // event handler for the previous city input buttons
