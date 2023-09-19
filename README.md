@@ -6,18 +6,16 @@ Weather application that allows a user to search for a city and then is presente
 
 User can click on the cities in their search history to reloadCurrent weather data the weather data for that city.
 
-5 day weather forecast
 
+### Three OpenWeather API calls:
+* Geocoding API
+* Current weather data
+* 5 day weather forecast
 
-Three OpenWeather API calls:
-Geocoding API
-Current weather data
-5 day weather forecast
-
-Note: 
-The OpenWeather 5 day weather forecast API gives weather data for every 3 hours from time of API call (results in 40 dataset entries)
-In the application, the API data is processed to average the temperature, wind, and humidity for each day, and the application reflects these averages.
-There is no icon for the 5-Day Forecast because an average icon cannot be calcuated.
+### Notes: 
+* The OpenWeather 5 day weather forecast API gives weather data for every 3 hours from time of API call (results in 40 dataset entries)
+* In the application, the API data is processed to average the temperature, wind, and humidity for each day, and the application reflects these averages.
+* In the 5-Day Forecast, the icon and weather desription is the first of its date (will match with the time of the API call).
 
 
 ## Installation
@@ -25,10 +23,10 @@ There is no icon for the 5-Day Forecast because an average icon cannot be calcua
 n/a
 
 ## Usage
-Link to deployed application: 
+Link to deployed application: https://hjlee17.github.io/06-five-day-weather-dashboard/
 
 A user can search cities for the current and future weather conditions. The application 
-![Weather Dashboard Application.](assets/images/sc-window.png)
+![Weather Dashboard Application.](assets/imgs/sc-window.png)
 
 ## Credits
 
