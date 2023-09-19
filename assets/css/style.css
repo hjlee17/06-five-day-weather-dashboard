@@ -49,8 +49,7 @@ header, footer {
     border: none;
     border-radius: 7.5px;
     padding: 10px;
-    padding-right: 10px;
-    width: 100%; /* input field is extending all the way flush to the right column? was not happening prior...*/
+    width: 100%; 
     margin-bottom: 10px;
 }
 
