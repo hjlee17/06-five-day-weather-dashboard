@@ -1,22 +1,5 @@
 const key = "2eb84bd9c91396232bf772ae41827d70";
 
-// function titleCaseAndMinimalSpaces
-// function removeDuplicates
-// function fetchAPIData
-
-// function getLatLon
-// function getWeatherData
-
-// function calculateAverage
-
-// function fetchAndDisplayWeather
-
-// function renderSavedCities
-// function init
-// function storeCities
-
-
-
 $(document).ready(function() {
     // function to change user inputs to title case and remove multiple spaces
     function titleCaseAndMinimalSpaces(input) {
