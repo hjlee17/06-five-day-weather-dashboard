@@ -185,7 +185,7 @@ $(document).ready(function() {
                         } else { // if date doesn't exist yet, create new array with that date
                             tempsList[date] = [temp];
                         }
-                        console.log(`temp: ${temp}`)
+                        // console.log(`temp: ${temp}`)
 
                         var windSpeed = entry.wind.speed;
                         if (windSpeedList[date]) {
@@ -193,7 +193,7 @@ $(document).ready(function() {
                         } else {
                             windSpeedList[date] = [windSpeed];
                         }
-                        console.log(`windSpeed: ${windSpeed}`)
+                        // console.log(`windSpeed: ${windSpeed}`)
 
                         var humidity = entry.main.humidity;
                         if (humidityList[date]) {
@@ -201,7 +201,7 @@ $(document).ready(function() {
                         } else {
                             humidityList[date] = [humidity];
                         }
-                        console.log(`humidity: ${humidity}`)
+                        // console.log(`humidity: ${humidity}`)
                         
                         // create array of icons by date
                         var icon = [`${entry.weather[0].icon}`];

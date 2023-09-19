@@ -36,7 +36,7 @@ header, footer {
     flex-direction: row;
     background-color: var(--purple);
     padding: 20px;
-    box-sizing: border-box; /* include padding in width calculation */
+    box-sizing: border-box; 
 }
 
 .left-column p {
@@ -49,7 +49,8 @@ header, footer {
     border: none;
     border-radius: 7.5px;
     padding: 10px;
-    width: 100%; 
+    padding-right: 10px;
+    width: 100%; /* input field is extending all the way flush to the right column? was not happening prior...*/
     margin-bottom: 10px;
 }
 
@@ -74,7 +75,7 @@ header, footer {
 
 hr {
     border: none; /* remove default border */
-    height: .5em; 
+    height: .15em; 
     background-color: black;
     margin: 20px 0; 
   }
@@ -88,7 +89,6 @@ hr {
     color: var(--turq);
     font-style: italic;
 }
-
 
 .right-column {
     flex: 3;
