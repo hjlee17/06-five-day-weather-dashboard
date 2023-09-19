@@ -31,7 +31,7 @@ $(document).ready(function() {
         });
     
         return uniqueArray;;
-    }
+    };
 
     // function to fetch data from an API
     function fetchAPIData(apiUrl) {
@@ -61,7 +61,7 @@ $(document).ready(function() {
             console.log ("lat and lon from geocoder API:")
             console.log (lat, lon);
         })
-    }
+    };
 
 
     // function to get weather data using the retrieved lat and lon
@@ -75,7 +75,7 @@ $(document).ready(function() {
             fetchAPIData(fiveDayForecastApiURL)
         ]);
 
-    }
+    };
 
 
     // function to calculate the avg value in an array
@@ -86,7 +86,7 @@ $(document).ready(function() {
         sum += array[i];
         }
         return (sum / array.length).toFixed(2);
-    }
+    };
 
 
     // function to fetch and display weather data
@@ -270,19 +270,19 @@ $(document).ready(function() {
                         }
                 
                     })
-                    console.log(dailyTempAverages);
-                    console.log(dailyWindSpeedAverages);
-                    console.log(dailyHumidityAverages);
-                    console.log(dailyFirstIcon);
-                    console.log(`${dailyFirstWeatherMain}: ${dailyFirstWeatherDescription}`)
-                    console.log(dailyFirstIconTimestamp);
+                    // console.log(dailyTempAverages);
+                    // console.log(dailyWindSpeedAverages);
+                    // console.log(dailyHumidityAverages);
+                    // console.log(dailyFirstIcon);
+                    // console.log(`${dailyFirstWeatherMain}: ${dailyFirstWeatherDescription}`)
+                    // console.log(dailyFirstIconTimestamp);
 
                     var currentDate = dayjs().format('M/DD/YYYY');
 
                     // retrieve the dates (keys) from dailytempAverages
                     var fiveDayForecastDates = Object.keys(dailyTempAverages);
 
-                    // determine if the first date in the data corresponds to "today" or "tomorrow"
+                    // determine if the first date in the data corresponds to "today" or "tomorrow" relative to API call time
                     var startIndex = 0;
                     if (fiveDayForecastDates.length > 0) {
                     var firstDate = dayjs(fiveDayForecastDates[0]).format('M/DD/YYYY');
@@ -291,7 +291,7 @@ $(document).ready(function() {
                     }};
 
 
-                    // IDs of the divs to populate
+                    // IDs of divs to populate
                     var elementIDs = ['day-1', 'day-2', 'day-3', 'day-4', 'day-5'];
 
                     for (var i = 0; i < elementIDs.length; i++) {
@@ -304,7 +304,6 @@ $(document).ready(function() {
                     var weatherDesc = dailyFirstWeatherDescription[fiveDayForecastDates[startIndex + i]];
                     var iconTimestamp = dailyFirstIconTimestamp[fiveDayForecastDates[startIndex + i]];
                     
-
                     var dateEl = document.getElementById(`${elementIDs[i]}-date`);
                     dateEl.textContent = date;
 
@@ -322,13 +321,15 @@ $(document).ready(function() {
                     var iconTimestampEl = document.getElementById(`${elementIDs[i]}-wicon-timestamp`);
                     iconTimestampEl.textContent = `(at ${dayjs.unix(iconTimestamp).format('H:mm a')})`;
                 
-
+                    // populate five-day temp       
                     var tempEl = document.getElementById(`${elementIDs[i]}-temp`);
                     tempEl.textContent = `Temp: ${temp} °F`;
 
+                    // populate five-day wind speed 
                     var windEl = document.getElementById(`${elementIDs[i]}-wind`);
                     windEl.textContent = `Wind Speed: ${wind} mph`;
 
+                    // populate five-day humidity 
                     var humidityEl = document.getElementById(`${elementIDs[i]}-humidity`);
                     humidityEl.textContent = `Humidity: ${humidity}%`;
 
@@ -411,7 +412,7 @@ $(document).ready(function() {
         console.log(savedCities)
         storeCities();
         renderSavedCities();
-    }
+    };
 
     // event handler for the search button
     $('#search-btn').click(function() {
@@ -425,8 +426,6 @@ $(document).ready(function() {
             searchCity();
         }
     });
-
-
 
     // event handler for the previous city input buttons
     $('#previous-cities').on('click', '.previous-city-button', function(event) {
